@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: neurolytix
+    env: python
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: python app.py
+    runtime: python
+    plan: free
+    region: oregon
+    branch: main
+    repo: https://github.com/tanushreedhananjayb/Neurolytix
+    pythonVersion: 3.10.13
