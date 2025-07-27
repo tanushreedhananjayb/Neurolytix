@@ -74,6 +74,11 @@ def predict():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Use Render's PORT or default to 5000
-    app.run(host="0.0.0.0", port=port, debug=True)
+    import os
+    import sys
+    port = int(os.environ.get("PORT", 10000))
+    try:
+        app.run(host="0.0.0.0", port=port)
+    except Exception as e:
+        print(f"Error starting Flask app: {e}", file=sys.stderr)
 
