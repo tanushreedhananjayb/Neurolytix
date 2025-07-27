@@ -1,3 +1,7 @@
+# Build Tools for Render Compatibility
+setuptools>=42
+wheel
+
 # Core Libraries
 numpy==1.24.3
 pandas==2.0.3
