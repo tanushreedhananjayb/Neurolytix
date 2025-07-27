@@ -1,6 +1,6 @@
 # Build Tools for Render Compatibility
-setuptools>=42
-wheel
+setuptools>=65.5.0
+wheel>=0.38.0
 
 # Core Libraries
 numpy==1.24.3
