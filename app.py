@@ -2,6 +2,14 @@ import os
 import sys
 import joblib
 import numpy as np
+import tensorflow as tf
+try:
+    physical_devices = tf.config.list_physical_devices('CPU')
+    if physical_devices:
+        tf.config.experimental.set_memory_growth(physical_devices[0], True)
+except Exception as e:
+    print(f"Memory growth not set: {e}", file=sys.stderr)
+
 from flask import Flask, request, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
 from tensorflow.keras.applications import MobileNetV2
@@ -22,6 +30,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 model = joblib.load('tuned_random_forest_model.pkl')
 
 # Use memory-optimized MobileNetV2 with global average pooling
+# Load MobileNetV2 globally (already done right)
 model_cnn = MobileNetV2(weights='imagenet', include_top=False, input_shape=(128, 128, 3), pooling='avg')
 
 # Label Map and Diagnosis Messages
@@ -47,8 +56,12 @@ def preprocess_image(image_path):
     image = img_to_array(image)
     image = preprocess_input(image)
     image = np.expand_dims(image, axis=0)
-    features = model_cnn.predict(image, verbose=0)
+    
+    with tf.device('/CPU:0'):  # Force CPU usage
+        features = model_cnn.predict(image, verbose=0)
+    
     return features.flatten().reshape(1, -1)
+
 
 @app.route('/')
 def home():
