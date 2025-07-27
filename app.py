@@ -1,4 +1,5 @@
 import os
+import sys
 import joblib
 import numpy as np
 from flask import Flask, request, render_template, redirect, url_for
@@ -6,7 +7,9 @@ from werkzeug.utils import secure_filename
 from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array, load_img
-from tensorflow.keras.models import Model
+
+# Suppress TensorFlow warnings
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -18,11 +21,10 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 # Load Random Forest model
 model = joblib.load('tuned_random_forest_model.pkl')
 
-# Load MobileNetV2 for CNN feature extraction
-base_model = MobileNetV2(weights='imagenet', include_top=False, input_shape=(128, 128, 3))
-model_cnn = Model(inputs=base_model.input, outputs=base_model.output)
+# Use memory-optimized MobileNetV2 with global average pooling
+model_cnn = MobileNetV2(weights='imagenet', include_top=False, input_shape=(128, 128, 3), pooling='avg')
 
-# Label Map and Messages
+# Label Map and Diagnosis Messages
 label_map = {
     0: "No Tumor",
     1: "Glioma Tumor",
@@ -72,13 +74,10 @@ def predict():
 
     return redirect(url_for('home'))
 
-
+# production-ready entrypoint (for Render or Gunicorn)
 if __name__ == "__main__":
-    import os
-    import sys
     port = int(os.environ.get("PORT", 10000))
     try:
         app.run(host="0.0.0.0", port=port)
     except Exception as e:
         print(f"Error starting Flask app: {e}", file=sys.stderr)
-
