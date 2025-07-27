@@ -7,6 +7,6 @@ services:
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: python app.py
     region: oregon
-    repo: https://github.com/tanushreedhananjayb/Neurolytix
     pythonVersion: 3.10.13
+
 
