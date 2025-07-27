@@ -8,5 +8,3 @@ services:
     startCommand: python app.py
     region: oregon
     pythonVersion: 3.10.13
-
-
