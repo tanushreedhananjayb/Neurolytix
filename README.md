@@ -1,97 +1,55 @@
-🧠 Neurolytix
-Smart MRI Tumor Detection System
+# 🧠 Neurolytix – Smart MRI Brain Tumor Classification System
 
-* Overview :
-Neurolytix is an intelligent MRI scan analysis web application designed to assist in the early detection of brain tumors. It provides a user-friendly platform for uploading brain MRI images, analyzes them using deep learning-based feature extraction, and classifies the tumor type with a reliable machine learning model. The results are presented in a medically themed, professionally styled report that mimics the feel of a diagnostic prescription.
+**Neurolytix** is an AI-powered MRI brain tumor detection system that uses deep learning (MobileNetV2) for feature extraction and a Random Forest classifier for high-accuracy tumor prediction. It provides users with a fast, reliable, and interactive web interface for uploading MRI scans and receiving diagnostic predictions in real-time.
 
-This tool can be particularly helpful in aiding radiologists and healthcare practitioners by providing a quick, second opinion based on pre-trained data and models.
+## 🚀 Live Deployment
 
-* Objective :
-The main aim of Neurolytix is to simplify and streamline the detection of brain tumors through automation. By combining the power of convolutional neural networks (CNN) for feature extraction with the speed and accuracy of a Random Forest Classifier, the system delivers predictions that are both efficient and interpretable.
+🔗 **Access the live app here:**  
+👉 [https://neurolytix-production.up.railway.app/](https://neurolytix-production.up.railway.app/)
 
-* Key Features :
-- Upload and analyze brain MRI scans instantly.
+---
 
-* Detects four conditions:
-→ No Tumor
-→ Glioma Tumor
-→ Meningioma Tumor
-→ Pituitary Tumor
+## 💡 Features
 
-- Uses MobileNetV2 CNN architecture for high-quality feature extraction.
+- Upload MRI images in `.jpg`, `.jpeg`, or `.png` formats
+- Deep learning-based feature extraction (MobileNetV2)
+- Random Forest classification of tumor types:
+  - No Tumor
+  - Glioma Tumor
+  - Meningioma Tumor
+  - Pituitary Tumor
+- Medical-report-style prediction display
+- Creative, hospital-themed Bootstrap UI
 
-- Random Forest Classifier for classification based on extracted image features.
+## 🛠️ Tech Stack
 
-- Medical-style user interface with dark theme and professional report layout.
+- Python
+- Flask
+- TensorFlow / Keras
+- Scikit-learn
+- MobileNetV2
+- Random Forest
+- Bootstrap (UI)
+- Railway (Deployment)
 
-- Responsive and creative UI built with Bootstrap 5 and custom CSS.
+---
 
-- Deployable securely with Render for public access.
+## 📁 How to Run Locally
 
-* Technologies Used
--> Frontend:
-  - HTML5, CSS3
-  - Bootstrap 5 (custom themed) 
-  - Responsive design principles
-    
--> Backend:
-  - Python 3.10
-  - Flask Web Framework
-
--> Machine Learning:
-  - TensorFlow, Keras (MobileNetV2)
-  - Scikit-learn (Random Forest Classifier)
-  - OpenCV for image preprocessing
-
--> Others:
-  - Joblib for model serialization
-  - Render for deployment
-  - Git & GitHub for version control
-
-* How It Works :
-
-1. A user uploads a brain MRI image via the web interface.
-2. The image is resized and preprocessed, then passed through a MobileNetV2 CNN model to extract features.
-3. These features are classified using a trained Random Forest model.
-4. The system outputs the tumor type (if any) in a clear, styled diagnostic report format.
-5. Users receive messages like “Congrats! No tumor detected.” or recommendations for specific tumor types.
-
-* Project Structure :
-
-  Neurolytix/
-│
-├── app.py                            # Main Flask server
-├── tuned_random_forest_model.pkl    # Trained ML model
-├── requirements.txt                 # Python dependencies
-├── static/
-│   ├── uploads/                     # Uploaded MRI scans
-│   └── images/                      # Logo, favicon
-├── templates/
-│   ├── index.html                   # Upload page
-│   └── result.html                  # Result report
-├── README.md                        # Project description
-
-* Getting Started (Local Setup):
-
-1. Clone the repository:
-
-git clone https://github.com/tanushreedhananjayb/Neurolytix.git
+```bash
+git clone https://github.com/yourusername/Neurolytix.git
 cd Neurolytix
-
-2. Create a virtual environment and activate it (recommended):
-
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-
-3. Install dependencies:
-
 pip install -r requirements.txt
-
-4. Run the application:
-
 python app.py
 
-* Contact :
+(Open your browser at http://localhost:10000/)
+
+📸 Sample UI :
+<img width="1919" height="895" alt="Screenshot 2025-07-27 092751" src="https://github.com/user-attachments/assets/c62cc27a-7115-404e-b0cc-4867241494ce" />
+<img width="1919" height="1019" alt="Screenshot 2025-07-27 092646" src="https://github.com/user-attachments/assets/76d7e5c3-8291-43af-829b-1ec75c565897" />
+
+📬 Contact :
+- For questions, feedback, or collaborations, reach out to me:
 Tanushree Dhananjay Bhamare
-🔗 GitHub: tanushreedhananjayb
-🔗 LinkedIn: https://www.linkedin.com/in/tanushree-dhananjay-bhamare-9219b724b/
+✉️ tanushreebhamare19@gmail.com
+🔗 https://www.linkedin.com/in/tanushree-dhananjay-bhamare-9219b724b/
